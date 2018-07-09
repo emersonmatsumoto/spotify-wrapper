@@ -54,7 +54,7 @@ describe('Main', () => {
     it('should receive the correct url to fetch', () => {
       context('passing one type', () => {
         const artists = search('Incubus', 'artist');
-        
+
         expect(fetchedStub).to.have.been
           .calledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist');
 
@@ -93,6 +93,51 @@ describe('Main', () => {
 
       const artists2 = searchArtists('Muse');
       expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Muse&type=artist');
+    });
+  });
+
+  describe('Search albums', () => {
+    it('should call fetch function', () => {
+      const albums = searchAlbums('Incubus');
+      expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct URL', () => {
+      const albums = searchAlbums('Incubus');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Incubus&type=album');
+
+      const albums2 = searchAlbums('Muse');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Muse&type=album');
+    });
+  });
+
+  describe('Search tracks', () => {
+    it('should call fetch function', () => {
+      const tracks = searchTracks('Incubus');
+      expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct URL', () => {
+      const tracks = searchTracks('Incubus');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Incubus&type=track');
+
+      const tracks2 = searchTracks('Muse');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Muse&type=track');
+    });
+  });
+
+  describe('Search playlists', () => {
+    it('should call fetch function', () => {
+      const playlists = searchPlaylists('Incubus');
+      expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct URL', () => {
+      const playlists = searchPlaylists('Incubus');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Incubus&type=playlist');
+
+      const playlists2 = searchPlaylists('Muse');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Muse&type=playlist');
     });
   });
 });
