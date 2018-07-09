@@ -50,16 +50,16 @@ describe('Main', () => {
 
       expect(fetchedStub).to.have.been.calledOnce;
     });
-    
+
     it('should receive the correct url to fetch', () => {
       context('passing one type', () => {
         const artists = search('Incubus', 'artist');
-  
+
         expect(fetchedStub).to.have.been
           .calledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist');
-  
+
         const albums = search('Incubus', 'album');
-  
+
         expect(fetchedStub).to.have.been
           .calledWith('https://api.spotify.com/v1/search?q=Incubus&type=album');
       });
