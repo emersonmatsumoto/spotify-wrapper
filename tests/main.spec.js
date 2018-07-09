@@ -9,7 +9,6 @@ sinonStubPromise(sinon);
 
 global.fetch = require('node-fetch');
 
-
 describe('Main', () => {
   describe('Smoke tests', () => {
     it('should exist the search method', () => {
@@ -35,8 +34,11 @@ describe('Main', () => {
 
   describe('Generic search', () => {
     let fetchedStub;
+    let promise;
+
     beforeEach(() => {
       fetchedStub = sinon.stub(global, 'fetch');
+      promise = fetchedStub.returnsPromise();
     });
 
     afterEach(() => {
@@ -68,6 +70,14 @@ describe('Main', () => {
         expect(fetchedStub).to.have.been
           .calledWith('https://api.spotify.com/v1/search?q=Incubus&type=artist,album');
       });
+    });
+
+    it('should return the JSON Data from the Promise', () => {
+      promise.resolves({ body: 'json' });
+
+      const artists = search('Incubus', 'artist');
+
+      expect(artists.resolveValue).to.be.eql({ body: 'json' });
     });
   });
 });
