@@ -37,6 +37,9 @@
     "url": "https://github.com/emersonmatsumoto/spotify-wrapper/issues"
   },
   "homepage": "https://github.com/emersonmatsumoto/spotify-wrapper#readme",
+  "dependencies": {
+    "node-fetch": "^2.1.2"    
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.3.2",
@@ -49,7 +52,6 @@
     "eslint-plugin-mocha": "^5.1.0",
     "husky": "^0.11.9",
     "mocha": "^3.2.0",
-    "node-fetch": "^2.1.2",
     "nyc": "^11.8.0",
     "rimraf": "^2.6.2",
     "sinon": "2.1.0",
